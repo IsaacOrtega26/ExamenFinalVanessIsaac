@@ -1,3 +1,39 @@
 <resources>
-    <string name="app_name">DiaroCampo</string>
+    <string name="app_name">FieldLog</string>
+    <string name="title_home">Inicio</string>
+    <string name="title_create">Nuevo</string>
+    <string name="title_map">Mapa</string>
+    <string name="title_detail">Detalle</string>
+
+    <!-- Mensajes comunes -->
+    <string name="save_success">Registro guardado exitosamente</string>
+    <string name="save_error">Error al guardar el registro</string>
+    <string name="delete_success">Registro eliminado</string>
+    <string name="delete_error">Error al eliminar</string>
+    <string name="location_success">Ubicación obtenida</string>
+    <string name="location_error">No se pudo obtener la ubicación</string>
+    <string name="photo_success">Foto tomada exitosamente</string>
+    <string name="photo_error">Error al tomar foto</string>
+
+    <!-- Placeholders -->
+    <string name="hint_title">Título</string>
+    <string name="hint_description">Descripción</string>
+    <string name="btn_save">Guardar</string>
+    <string name="btn_cancel">Cancelar</string>
+    <string name="btn_get_location">Obtener Ubicación</string>
+    <string name="btn_take_photo">Tomar Foto</string>
+    <string name="btn_view_details">Ver Detalles</string>
+
+    <!-- Permisos -->
+    <string name="permission_location">Se necesita permiso de ubicación para obtener tu localización</string>
+    <string name="permission_camera">Se necesita permiso de cámara para tomar fotos</string>
+    <string name="permission_storage">Se necesita permiso de almacenamiento para guardar fotos</string>
+
+    <!-- Estados -->
+    <string name="location_not_obtained">Ubicación no obtenida</string>
+    <string name="photo_not_taken">Foto no tomada</string>
+    <string name="no_records">No hay registros aún. Crea tu primer registro.</string>
+    
+    <!-- Mapa -->
+    <string name="map_api_key_required">Para usar el mapa, necesitas configurar una API key de Google Maps en AndroidManifest.xml</string>
 </resources>

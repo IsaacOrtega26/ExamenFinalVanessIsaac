@@ -1,5 +1,6 @@
 package com.example.fieldlog.data
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Dao
@@ -15,11 +16,12 @@ interface RecordDao {
     suspend fun delete(record: Record)
     
     @Query("SELECT * FROM records ORDER BY date DESC")
-    suspend fun getAllRecords(): List<Record>
+    fun getAllRecords(): LiveData<List<Record>>
     
     @Query("SELECT * FROM records WHERE id = :recordId")
-    suspend fun getRecordById(recordId: Int): Record?
+    fun getRecordById(recordId: Int): LiveData<Record?>
     
     @Query("DELETE FROM records WHERE id = :recordId")
     suspend fun deleteById(recordId: Int)
 }
+
