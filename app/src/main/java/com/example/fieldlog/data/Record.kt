@@ -2,7 +2,6 @@ package com.example.fieldlog.data
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.util.Date
 
 @Entity(tableName = "records")
 data class Record(
@@ -16,3 +15,4 @@ data class Record(
     val date: Long = System.currentTimeMillis(),
     val weather: String? = null
 )
+

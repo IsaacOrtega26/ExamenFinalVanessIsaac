@@ -20,8 +20,9 @@ class CameraHelper(private val context: Context) {
     }
     
     private var currentPhotoUri: Uri? = null
+    private var currentPhotoFile: File? = null
     
-    fun dispatchTakePictureIntent(activity: Activity): Uri? {
+    fun getTakePictureIntent(context: Context): Intent? {
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         
         // Crear archivo para la foto
@@ -33,6 +34,7 @@ class CameraHelper(private val context: Context) {
         }
         
         photoFile?.also {
+            currentPhotoFile = it
             val photoURI: Uri = FileProvider.getUriForFile(
                 context,
                 "${context.packageName}.fileprovider",
@@ -40,10 +42,22 @@ class CameraHelper(private val context: Context) {
             )
             currentPhotoUri = photoURI
             intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
-            activity.startActivityForResult(intent, REQUEST_IMAGE_CAPTURE)
+            intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            return intent
         }
         
-        return currentPhotoUri
+        return null
+    }
+    
+    @Deprecated("Use getTakePictureIntent instead", ReplaceWith("getTakePictureIntent"))
+    fun dispatchTakePictureIntent(activity: Activity): Uri? {
+        val intent = getTakePictureIntent(activity)
+        if (intent != null) {
+            activity.startActivityForResult(intent, REQUEST_IMAGE_CAPTURE)
+            return currentPhotoUri
+        }
+        return null
     }
     
     @Throws(Exception::class)
@@ -59,6 +73,11 @@ class CameraHelper(private val context: Context) {
     }
     
     fun getCurrentPhotoPath(): String? {
-        return currentPhotoUri?.path
+        return currentPhotoFile?.absolutePath
+    }
+    
+    fun getCurrentPhotoUri(): Uri? {
+        return currentPhotoUri
     }
 }
+
